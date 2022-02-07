@@ -21,18 +21,21 @@ public class AppConfig {
 
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     //"역할에 따른 구현이 명확해지도록 분리 및 중복 제거"(멤버 서비스는 멤버서비스만을 구현, 멤버리포지토리는 멤버리포지토리만을 구현)
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.orderService");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
 //        return new OrderServiceImpl(memberRepository(), new FixDiscountPolicy());
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
